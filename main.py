@@ -16,6 +16,8 @@ def main():
   book.char_relative_prob()
   print(book.get_characters_prob())
   print("\n\nEntropy:", book.calc_entropy())
+  print("\n\nSorted probs dict:", book.sort_char_rel_prob())
+  print("\n\nTOTAL PROB:", book.total_char_prob())
 
 if __name__ == '__main__':
   main()

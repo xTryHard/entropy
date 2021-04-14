@@ -45,3 +45,17 @@ class Book:
   def get_entropy(self):
     return self._entropy
       
+  def sort_char_rel_prob(self):
+    sorted_chars = sorted(self._characters_prob, key=self._characters_prob.get)
+    sorted_chars.reverse()
+    sorted_probs_dict = {}
+
+    for char in sorted_chars:
+      sorted_probs_dict[char] = self._characters_prob[char]
+    return sorted_probs_dict
+
+  def total_char_prob(self):
+    total_prob = 0
+    for char, char_prob in self._characters_prob.items():
+      total_prob += char_prob
+    return total_prob
