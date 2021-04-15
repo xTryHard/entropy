@@ -2,6 +2,15 @@ from book import Book
 from character import Character
 from tabulate import tabulate
 
+def shannon_fano_avg(characters):
+  total_chars = len(characters)
+  bits_avg = 0
+  for char in characters:
+    bits_avg += len(char.get_code())
+  bits_avg /= total_chars
+
+  return bits_avg
+
 def sum_arr(characters):
   sum = 0
   for char in characters:
@@ -69,9 +78,7 @@ def main():
   # print("\n\nSorted probs dict:", sorted_probs)
   print("\nBook file name: "+book.get_name())
   print("\nBook total character count: {0}".format(book.get_char_count()))
-  print("\nEntropy:", book.calc_entropy())
-  print("\nTotal probability:", book.total_char_prob())
-  print("\nShannon Fano Results: \n")
+  print("\nEntropy (theoretical):", book.calc_entropy())
 
   characters = []
   for char, probability in sorted_probs.items():
@@ -79,6 +86,10 @@ def main():
     characters.append(character)
 
   shannon_fano(characters)
+
+  print("\nEntropy (Shannon Fano):", shannon_fano_avg(characters))
+  print("\nTotal probability:", book.total_char_prob())
+  print("\nShannon Fano Results: \n")
   print_characters(characters, book.get_characters())
   
   # character1 = Character('A', 0.22)
